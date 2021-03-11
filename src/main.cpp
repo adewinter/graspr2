@@ -74,18 +74,6 @@ void read_adc_and_write_to_serial() {
   write_value_to_serial(sensor_value);
 }
 
-void what() {
-  float t = (float)(millis()/1000.0);
-  float s = (sin(t) + 1.0)/2;
-  float r = get_random_between(16);
-
-  char buff[50];
-  sprintf(buff, "time: %f, sine: %f, random: %f", t, s, r);
-  Serial.println(buff);
-
-}
-
-
 void generate_fake_data_and_write_to_serial() {
   uint16_t fake_value = generate_fake_value();
   write_value_to_serial(fake_value);
@@ -100,7 +88,7 @@ void setup() {
 void loop() {
   #ifdef SEND_FAKE_DATA
     generate_fake_data_and_write_to_serial();
-    // what();
+    delay(10);
   #else
     read_adc_and_write_to_serial();
   #endif
